@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>TO DO　アプリ</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <style>
+        .done-true{
+            color: #c37e6e;
+            text-decoration: line-through;
+        }
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="MainController">
+    <h1>TO DO アプリ</h1>
+    <p>完了したたタスク{{finishedTask()}}/{{tasks.length}}</p>
+    <button ng-click="delete()" >削除</button>
+    <ul>
+        <li ng-repeat="task in tasks">
+            <input type="checkbox" ng-model="task.checked">
+            <span class="done-{{task.checked}}">
+            {{task.body}}
+            </span>
+            <a href ng-click="tasks.splice($index,1)">[×]</a>
+        </li>
+    </ul>
+    <form name="taskForm" ng-submit="addtask()" >
+        <input type="text" ng-model="newtaskBody">
+        <input type="submit" value="add">
+    </form>
+</div>
+</body>
+</html>
