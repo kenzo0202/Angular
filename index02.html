@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular.jsの練習</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="myscript02.js"></script>
+    <style>
+        .even{
+            background: #ccc;
+        }
+        .odd{
+            background: #999;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="MainController">
+    <h1>Angular.jsの練習</h1>
+    <!--novalidata html5のバリデーションを無効化-->
+    <form novalidate name="clientForm" ng-submit="addUser()">
+        <input type="text" name="name" ng-model="client.name" required  ng-minlength="5" ng-maxlength="8">
+        <span ng-show="clientForm.name.$error.required">Required!</span>
+        <span ng-show="clientForm.name.$error.minlength">少ない!</span>
+        <span ng-show="clientForm.name.$error.maxlength">多い!</span>
+        <br>
+        <input type="email" name="email" ng-model="client.email" required>
+        <span ng-show="clientForm.email.$error.required">emailアドレスを入力してね</span>
+        <br>
+        <input type="url" name="url" ng-model="client.url">
+        <span ng-show="clientForm.url.$error.url">Invalid url address</span>
+
+        <!--リストボタン-->
+        <select ng-model="client.color" ng-options="'label:'+color for color in ['red','yellow','black']" ng-init="client.color='red'">
+
+        </select>
+        <input type="submit" value="登録">
+    </form>
+    <pre>{{client | json}}</pre>
+</div>
+</body>
+</html>

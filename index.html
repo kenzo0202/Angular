@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular.jsの練習</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="myscript.js"></script>
+    <style>
+        .even{
+            background: #ccc;
+        }
+        .odd{
+            background: #999;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="MainController">
+    <input type="text" ng-model="query">
+    <p>{{25*500 | number}}</p>
+    <p>{{users.length}} users</p>
+    <p>{{date}}</p>
+    <ul>
+        <li ng-repeat="user in users" ng-class-even="'even'" ng-class-odd="'odd'" ng-controller="SubController">
+            <!--|limitTo:5|filter:query-->
+            <!--orderBY:'-score'-->
+            <!--複数使える　｜orderBy:'score'|limitto:5-->
+            <!--{{$index+1}}{{$first}}{{$middle}}{{$last}}-->
+            {{user.name| uppercase}}{{user.score|number:1}}
+            <button ng-click="increment()">+1</button>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
